@@ -108,19 +108,19 @@
     <div>
         Generos:
         <div>
-            Acción <input type="checkbox" name="accion" value="accion"/>
+            Acción <input type="checkbox" name="accion" value="accion" <%if(accion != null && !accion.equals("")){%> checked <%} %> />
         </div>
         <div>
-            Ciencia fincción <input type="checkbox" name="cienciaFiccion" value="cienciaFiccion" />
+            Ciencia fincción <input type="checkbox" name="cienciaFiccion" value="cienciaFiccion" <%if(cienciaFiccion != null && !cienciaFiccion.equals("")){%> checked <%} %> />
         </div>
         <div>
-            Historia <input type="checkbox" name="historia" value="historia" />
+            Historia <input type="checkbox" name="historia" value="historia" <%if(historia != null && !historia.equals("")){%> checked <%} %> />
         </div>
         <div>
-            Drama <input type="checkbox" name="drama" value="drama" />
+            Drama <input type="checkbox" name="drama" value="drama" <%if(drama != null && !drama.equals("")){%> checked <%} %> />
         </div>
         <div>
-            Comedia <input type="checkbox" name="comedia" value="comedia" />
+            Comedia <input type="checkbox" name="comedia" value="comedia" <%if(comedia != null && !comedia.equals("")){%> checked <%} %>/>
         </div>
     </div>
 
