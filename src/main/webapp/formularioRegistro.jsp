@@ -71,6 +71,13 @@
 	}
 	
 %>
+<%!
+	public boolean isAllCorrect(String nombre,String apellidos,String correo,String fNacimiento,String sexo,String tipo,String contraseña1,String contraseña2){
+		boolean allOk= false;
+		if(!nombre.equals("") && !apellidos.equals("") && !correo.equals("") && !fNacimiento.equals("") && !sexo.equals("") && (!contraseña1.equals("") && !contraseña2.equals("") && contraseña2.equals(contraseña1))) allOk= true;
+		return allOk;
+	}
+%>
 <form method="post">
     <div>
        Nombre: <input type="text" name="nombre" value="<%=nombre%>" /><%if(!errornombre.equals("")){%><span style="color:red"><%=errornombre %></span> <%} %>
@@ -135,6 +142,7 @@
     <div>
         <input type="submit" name="enviar" />
     </div>
+    <%if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) {%><span style="color:blue">Formulario correcto</span> <%}%>
 </form>
 </body>
 </html>
