@@ -1,3 +1,8 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.TreeMap"%>
+<%@page import="usuarios.Registro"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,10 +13,16 @@
 </head>
 <body>
 <%
+	Map<String, Registro> registros = (TreeMap<String, Registro>) application.getAttribute("mapaRegistros");
+	if(registros == null){
+		registros= new TreeMap<String, Registro>();	
+	}
+
 	String nombre = "", apellidos = "", correo = "", fNacimiento = "", sexo = "", tipo = "", contraseña1 = "", contraseña2 = "";
 	String errornombre = "", errorapellidos = "", errorcorreo = "", errorfNacimiento = "", errorsexo = "", errortipo = "", errorcontraseña1 = "", errorcontraseña2 = "";
 	
 	String accion = "", cienciaFiccion = "", historia = "", comedia ="", drama ="";
+
 	
 	String enviar= request.getParameter("enviar");
 	if(enviar != null){
@@ -32,6 +43,8 @@
 		if(correo.equals("") || correo.equals(" ") || correo == null){
 			correo = "";
 			errorcorreo = "Introduce un email";
+		} else if(registros.containsKey(correo)){
+			errorcorreo = "Este correo ya tiene una cuenta asociada";
 		}
 		
 		fNacimiento= request.getParameter("born");
@@ -68,7 +81,22 @@
 			}
 		}
 		
+		
+		
+		// Si el formulario está correcto
+		if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) {
+			//Creo un nuevo registro
+			Registro registro = new Registro(nombre,apellidos,correo,fNacimiento,sexo,tipo,
+				accion, cienciaFiccion, historia, comedia, drama, contraseña1);
+			// Guardo el registro en el mapa
+			registros.put(correo, registro);
+			// Guardo el mapa de registro en la aplicación
+			application.setAttribute("mapaRegistros", registros);
+		}
+		
+		
 	}
+	
 	
 %>
 <%!
@@ -78,6 +106,8 @@
 		return allOk;
 	}
 %>
+<jsp:include page="header.jsp"/>
+
 <form method="post">
     <div>
        Nombre: <input type="text" name="nombre" value="<%=nombre%>" /><%if(!errornombre.equals("")){%><span style="color:red"><%=errornombre %></span> <%} %>
@@ -142,7 +172,7 @@
     <div>
         <input type="submit" name="enviar" />
     </div>
-    <%if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) {%><span style="color:blue">Formulario correcto</span> <%}%>
+    <%if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) { response.sendRedirect("homePage.jsp");}%>
 </form>
 </body>
 </html>

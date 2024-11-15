@@ -14,7 +14,7 @@
 </head>
 <body>
 	<footer>
-		<p>Todos los derecho reservados</p>
+		<p>	&copy; Todos los derecho reservados</p>
 	</footer>
 </body>
 </html>
