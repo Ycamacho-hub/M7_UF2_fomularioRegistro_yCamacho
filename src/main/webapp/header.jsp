@@ -62,9 +62,5 @@
 			<a class="fLogin" href="login.jsp">Iniciar sesión</a>
 		</nav>
 	</header>
-	<main>
-	
-	</main>
-	
 </body>
 </html>

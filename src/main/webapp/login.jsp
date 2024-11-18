@@ -11,6 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 	<%
@@ -68,18 +69,21 @@
 		
 	%>
 	<jsp:include page="header.jsp"/>
-	<h1>Inicio sesión</h1>
-	<form method="post">
-		<div>
-			Email: <input type="text" name="user" value="<%=user%> ">
-		</div><%if(!userError.equals("")) {%> <span style="color:red"><%=userError%></span> <%} %>
-		<div>
-			Contraseña: <input type="text" name="pssw" value="<%=password%>">
-		</div><%if(!passwordError.equals("")) {%> <span style="color:red"><%=passwordError%></span> <%} %>
-		<%if(!errorLogin.equals("")) {%> <span style="color:red"><%=errorLogin%></span> <%} %>
-		<div>
-			<input type="submit" value="Confirmar" name="enviar">
-		</div>
-	</form>
+	<main>
+		<h1>Inicio sesión</h1>
+		<form method="post">
+			<div>
+				Email: <input type="text" name="user" value="<%=user%> ">
+			</div><%if(!userError.equals("")) {%> <span style="color:red"><%=userError%></span> <%} %>
+			<div>
+				Contraseña: <input type="text" name="pssw" value="<%=password%>">
+			</div><%if(!passwordError.equals("")) {%> <span style="color:red"><%=passwordError%></span> <%} %>
+			<%if(!errorLogin.equals("")) {%> <span style="color:red"><%=errorLogin%></span> <%} %>
+			<div>
+				<input type="submit" value="Confirmar" name="enviar">
+			</div>
+		</form>
+	</main>
+	<jsp:include page="footer.jsp"/>
 </body>
 </html>
