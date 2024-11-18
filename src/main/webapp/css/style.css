@@ -2,15 +2,17 @@ body {
 	display: grid;
 	min-height: 100dvh;
 	grid-template-rows: auto 1fr auto;
+
 }
 
-main {
-	position: relative;
-}
 
-form {
+.tittle-form {
 	position: absolute;
-	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%);
+}
+
+form>div {
+	display: grid;
+	margin: 5px;
 }

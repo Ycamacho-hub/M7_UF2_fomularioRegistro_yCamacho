@@ -109,6 +109,8 @@
 %>
 <jsp:include page="header.jsp"/>
 <main>
+<div class="tittle-form">
+	<h2>Registro de usuario</h2>
 	<form method="post">
 	    <div>
 	       Nombre: <input type="text" name="nombre" value="<%=nombre%>" /><%if(!errornombre.equals("")){%><span style="color:red"><%=errornombre %></span> <%} %>
@@ -175,6 +177,7 @@
 	    </div>
 	    <%if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) { response.sendRedirect("homePage.jsp");}%>
 	</form>
+</div>
 </main>
 <jsp:include page="footer.jsp"/>
 </body>

@@ -47,7 +47,10 @@
 				Registro r = registros.get(user);
 				if(!r.getContraseña().equals(password)){
 					errorLogin = "Usuario o contraseña incorrectos";
-				}else response.sendRedirect("homePage.jsp");
+				}else{
+					session.setAttribute("loginRegistre", r );
+					response.sendRedirect("homePage.jsp");
+				}
 			} else {
 				
 				if(user.equals("") || user.equals(" ") || user == null){
@@ -70,6 +73,7 @@
 	%>
 	<jsp:include page="header.jsp"/>
 	<main>
+	<div class="tittle-form">
 		<h1>Inicio sesión</h1>
 		<form method="post">
 			<div>
@@ -83,6 +87,7 @@
 				<input type="submit" value="Confirmar" name="enviar">
 			</div>
 		</form>
+		</div>
 	</main>
 	<jsp:include page="footer.jsp"/>
 </body>
