@@ -21,7 +21,7 @@
 			registros= new TreeMap<String, Registro>();
 		}	
 	
-		String user="", password="";
+		String user="", password="", remember = "";
 		String userError="", passwordError="", errorLogin="";
 		
 		String enviar= request.getParameter("enviar");
@@ -42,12 +42,22 @@
 			
 			user= request.getParameter("user");
 			password = request.getParameter("pssw");
+			remember = request.getParameter("remember");
 			
 			if(registros.containsKey(user)){
 				Registro r = registros.get(user);
 				if(!r.getContraseña().equals(password)){
 					errorLogin = "Usuario o contraseña incorrectos";
 				}else{
+					if(remember != null && remember.equals("remember")){
+						String userInformation = r.getEmail() +";"+ r.getContraseña();
+						Cookie cookieUserLogin = new Cookie("user_login_information", userInformation);
+						cookieUserLogin.setMaxAge(60*15);
+						response.addCookie(cookieUserLogin);
+						
+					}
+					
+					
 					session.setAttribute("loginRegistre", r );
 					response.sendRedirect("homePage.jsp");
 				}
@@ -83,6 +93,9 @@
 				Contraseña: <input type="text" name="pssw" value="<%=password%>">
 			</div><%if(!passwordError.equals("")) {%> <span style="color:red"><%=passwordError%></span> <%} %>
 			<%if(!errorLogin.equals("")) {%> <span style="color:red"><%=errorLogin%></span> <%} %>
+			<div class="have-checkbox">
+				<div><input type="checkbox" name="remember" value="remember" > Recuérdame</div>
+			</div>
 			<div>
 				<input type="submit" value="Confirmar" name="enviar">
 			</div>

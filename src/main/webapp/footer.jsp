@@ -9,6 +9,7 @@
 		footer {
 			height: 100px;
 			background-color: orange;
+			padding: 20px;
 		}
 	</style>
 </head>

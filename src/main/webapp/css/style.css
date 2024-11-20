@@ -12,7 +12,10 @@ body {
 	transform: translate(-50%);
 }
 
+
 form>div {
 	display: grid;
 	margin: 5px;
 }
+
+
