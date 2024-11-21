@@ -93,6 +93,7 @@
 			registros.put(correo, registro);
 			// Guardo el mapa de registro en la aplicación
 			application.setAttribute("mapaRegistros", registros);
+			response.sendRedirect("homePage.jsp");
 		}
 		
 		
@@ -175,7 +176,6 @@
 	    <div>
 	        <input type="submit" name="enviar" />
 	    </div>
-	    <%if(isAllCorrect(nombre, apellidos, correo, fNacimiento, sexo, tipo, contraseña1, contraseña2)) { response.sendRedirect("homePage.jsp");}%>
 	</form>
 </div>
 </main>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="usuarios.Registro"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.TreeMap"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,10 +77,23 @@
 	String linkPrivatePage = "<a href=\"#\">Información al cliente</a>";
 	String formUser = "<a class=\"fRegistre\" href=\"formularioRegistro.jsp\">Registrarse</a><a class=\"fLogin\" href=\"login.jsp\">Iniciar sesión</a>";
 	Registro regt = (Registro) session.getAttribute("loginRegistre");
+	Cookie ckLogin = obtenerCookie(request.getCookies(), "user_login_information");
+	Map<String, Registro> registros = (TreeMap<String, Registro>) application.getAttribute("mapaRegistros");
 	
 	if(regt != null) {
 		linkPrivatePage = "<a href=\"privatePage.jsp\">Información al cliente</a>";
 		formUser = "<p class=\"loginName\">" + regt.getNombre() + " " + regt.getApellidos() + "</p>";
+	} else if(ckLogin != null) {
+		// userInfo[0] = email ; userInfo[1] = contraseña
+		String[] userInfo= ckLogin.getValue().split(":");
+		if(userInfo != null){
+			regt = registros.get(userInfo[0]);
+			if(userInfo[0].equals(regt.getEmail())){
+				linkPrivatePage = "<a href=\"privatePage.jsp\">Información al cliente</a>";
+				formUser = "<p class=\"loginName\">" + regt.getNombre() + " " + regt.getApellidos() + "</p>";
+			}
+		}
+		
 	}
 	
 	

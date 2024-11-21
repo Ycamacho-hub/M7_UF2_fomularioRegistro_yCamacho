@@ -50,11 +50,10 @@
 					errorLogin = "Usuario o contraseña incorrectos";
 				}else{
 					if(remember != null && remember.equals("remember")){
-						String userInformation = r.getEmail() +";"+ r.getContraseña();
+						String userInformation = r.getEmail() +":"+ r.getContraseña();
 						Cookie cookieUserLogin = new Cookie("user_login_information", userInformation);
-						cookieUserLogin.setMaxAge(60*15);
+						cookieUserLogin.setMaxAge(30);
 						response.addCookie(cookieUserLogin);
-						
 					}
 					
 					
@@ -87,7 +86,7 @@
 		<h1>Inicio sesión</h1>
 		<form method="post">
 			<div>
-				Email: <input type="text" name="user" value="<%=user%> ">
+				Email: <input type="text" name="user" value="<%=user%>">
 			</div><%if(!userError.equals("")) {%> <span style="color:red"><%=userError%></span> <%} %>
 			<div>
 				Contraseña: <input type="text" name="pssw" value="<%=password%>">
