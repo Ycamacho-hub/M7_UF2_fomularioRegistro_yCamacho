@@ -52,7 +52,7 @@
 					if(remember != null && remember.equals("remember")){
 						String userInformation = r.getEmail() +":"+ r.getContraseña();
 						Cookie cookieUserLogin = new Cookie("user_login_information", userInformation);
-						cookieUserLogin.setMaxAge(30);
+						cookieUserLogin.setMaxAge(60*10);
 						response.addCookie(cookieUserLogin);
 					}
 					
